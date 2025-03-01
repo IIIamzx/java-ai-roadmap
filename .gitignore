@@ -1,0 +1,13 @@
+*/target
+.idea
+.fleet
+*.iml
+*/*.iml
+target
+dist
+logs
+*.orc
+
+*/node_modules
+*/dist
+*/pnpm-lock.yaml
