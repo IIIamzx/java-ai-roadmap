@@ -1,0 +1,29 @@
+server:
+  port: 7766
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+    username: your_username
+    password: your_password
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+  ai:
+#    openai:
+#      api-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#      model: gpt-4-turbo
+#      temperature: 0.7
+#      max-tokens: 500
+#    ollama:
+#      model: mistral
+#      base-url: http://localhost:11434
+#      temperature: 0.7  # 控制生成文本的随机性
+#      max-tokens: 4096  # 限制单次输出的 Token 数量
+#      top-p: 0.9  # 影响采样多样性
+#      top-k: 50   # 限制采样范围
+    moonshot:
+      api-key: sk-bNdwH7QV15EWWaEhh3PWXaWyfumnVSRhQ7K9KRvV0xcn51sp
+      chat:
+        options:
+          model: moonshot-v1-8k
+          temperature: 0.7
