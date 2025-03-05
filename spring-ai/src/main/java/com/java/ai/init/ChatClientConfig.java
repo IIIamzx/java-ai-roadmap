@@ -2,6 +2,7 @@ package com.java.ai.init;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.moonshot.MoonshotChatModel;
@@ -20,8 +21,9 @@ public class ChatClientConfig {
     final MoonshotChatModel moonshotModel;
 
     @Bean
-    public ChatClient chatClient(){
+    public ChatClient chatClient(ChatMemory chatMemory){
         return ChatClient.builder(moonshotModel)
+                .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))
                 .build();
     }
     @Bean

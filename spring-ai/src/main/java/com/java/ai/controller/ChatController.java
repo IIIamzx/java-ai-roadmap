@@ -1,11 +1,8 @@
 package com.java.ai.controller;
 
-import jakarta.annotation.Resource;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +24,7 @@ public class ChatController {
 
     ChatClient chatClient;
 
-    public ChatController(@Qualifier("chatClientWithRole") ChatClient chatClient) {
+    public ChatController(@Qualifier("chatClient") ChatClient chatClient) {
         this.chatClient = chatClient;
     }
 
