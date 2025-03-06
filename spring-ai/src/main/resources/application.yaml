@@ -14,13 +14,11 @@ spring:
 #      model: gpt-4-turbo
 #      temperature: 0.7
 #      max-tokens: 500
-#    ollama:
-#      model: mistral
-#      base-url: http://localhost:11434
-#      temperature: 0.7  # 控制生成文本的随机性
-#      max-tokens: 4096  # 限制单次输出的 Token 数量
-#      top-p: 0.9  # 影响采样多样性
-#      top-k: 50   # 限制采样范围
+    ollama:
+      base-url: http://120.46.189.218:11434
+      chat:
+        options:
+          model: deepseek-r1:1.5b
     moonshot:
       api-key: sk-bNdwH7QV15EWWaEhh3PWXaWyfumnVSRhQ7K9KRvV0xcn51sp
       chat:
