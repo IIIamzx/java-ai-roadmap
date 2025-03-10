@@ -18,7 +18,7 @@ spring:
       base-url: http://120.46.189.218:11434
       chat:
         options:
-          model: deepseek-r1:1.5b
+          model: llama3.2:latest
     moonshot:
       api-key: sk-bNdwH7QV15EWWaEhh3PWXaWyfumnVSRhQ7K9KRvV0xcn51sp
       chat:
