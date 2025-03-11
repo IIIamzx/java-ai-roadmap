@@ -37,3 +37,34 @@ ORDER BY embedding <-> '[0.35, 0.65, 0.25]'
 LIMIT 1;
 
 
+
+
+
+
+-- spring-ai集成 embedding --
+
+--- 连接数据库   docker exec -it pgvector psql -U postgres -d embedding
+
+CREATE EXTENSION IF NOT EXISTS vector;
+CREATE EXTENSION IF NOT EXISTS hstore;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE IF NOT EXISTS vector_store(
+    id        uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    content   text,
+    metadata  json,
+    embedding vector(384)
+);
+CREATE INDEX ON vector_store USING HNSW (embedding vector_cosine_ops);
+
+
+
+INSERT INTO public.vector_store (id, content, metadata, embedding)
+VALUES ('ebdf64e5-bd04-41ce-9bd2-34b4f857d7ba',
+        '无论您是初学者还是经验丰富的开发者，xmin 都能提供高效、灵活的工具，让您专注于业务需求而不是技术实现', '{
+    "key": "value"
+  }'::jsonb, '[1,2,3]'::vector);
+
+
+
+

@@ -4,11 +4,18 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
-    username: your_username
-    password: your_password
+    url: jdbc:postgresql://10.211.55.7:5432/embedding
+    username: postgres
+    password: postgres
     #driver-class-name: com.mysql.cj.jdbc.Driver
   ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW #索引类型
+        distance-type: COSINE_DISTANCE  #使用余弦距离来衡量向量相似性
+        dimensions: 384  #向量维度
+        batching-strategy: TOKEN_COUNT # Optional: Controls how documents are batched for embedding
+        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
 #    openai:
 #      api-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #      model: gpt-4-turbo
@@ -18,7 +25,12 @@ spring:
       base-url: http://120.46.189.218:11434
       chat:
         options:
-          model: llama3.2:latest
+          model: deepseek-r1:1.5b
+      embedding:
+        enabled: true
+        options:
+          model: all-minilm
+    #        model: nomic-embed-text:latest
     moonshot:
       api-key: sk-bNdwH7QV15EWWaEhh3PWXaWyfumnVSRhQ7K9KRvV0xcn51sp
       chat:
