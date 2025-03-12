@@ -3,10 +3,12 @@ package com.java.ai.init;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.moonshot.MoonshotChatModel;
 import org.springframework.ai.ollama.OllamaChatModel;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,10 +25,12 @@ public class ChatClientConfig {
 
     final OllamaChatModel ollamaChatModel;
 
+    final VectorStore vectorStore;
+
     @Bean
     public ChatClient chatClient(ChatMemory chatMemory){
-        return ChatClient.builder(ollamaChatModel)
-                .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))
+        return ChatClient.builder(moonshotModel)
+                .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory),new QuestionAnswerAdvisor(vectorStore))
                 .build();
     }
     @Bean
