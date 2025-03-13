@@ -18,8 +18,8 @@ langchain4j:
       dashscope:
         chat-model:
           api-key: sk-4000a9e2f25d469fb524a5174df01693
-          #model_name:  deepseek-v3    qwen-max       qwen-max-latest
-          model-name: qwen-plus
+          #model_name:  deepseek-v3           qwen-max-latest    qwen-plus    qwq-32b
+          model-name: qwen-max
 #  ollama:
 #    chat-model:
 #      base-url: http://120.46.189.218:11434
