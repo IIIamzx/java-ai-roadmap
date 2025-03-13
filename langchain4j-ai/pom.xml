@@ -30,9 +30,7 @@
                 <scope>import</scope>
             </dependency>
 
-
         </dependencies>
-
 
     </dependencyManagement>
 
@@ -109,7 +107,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${springboot.version}</version>
                 <configuration>
-                    <mainClass>com.xmin.lecture.Application</mainClass>
+                    <mainClass>com.java.langchain4j.Langchain4jApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

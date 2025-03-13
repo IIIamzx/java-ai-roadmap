@@ -1,0 +1,45 @@
+server:
+  port: 7776
+
+spring:
+  datasource:
+    url: jdbc:postgresql://10.211.55.7:5433/embedding
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 60
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+      connection-init-sql: SELECT 1
+
+
+langchain4j:
+    community:
+      dashscope:
+        chat-model:
+          api-key: sk-4000a9e2f25d469fb524a5174df01693
+          #model_name:  deepseek-v3    qwen-max       qwen-max-latest
+          model-name: qwen-plus
+#  ollama:
+#    chat-model:
+#      base-url: http://120.46.189.218:11434
+#      #model-name: llama3.1
+#      model-name: llava
+#    embedding-model:
+#      base-url: http://120.46.189.218:11434
+#      model-name: all-minilm
+
+
+
+pgvector:
+  database: embedding
+  host: 10.211.55.7
+  port : 5432
+  user: postgres
+  password: postgres
+  table: my_embeddings
+
+search:
+  apiKey: ${SEARCH_APIKEY}
+  engine: baidu
+
