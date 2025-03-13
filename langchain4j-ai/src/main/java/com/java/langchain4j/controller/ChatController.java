@@ -1,6 +1,7 @@
 package com.java.langchain4j.controller;
 
 import com.java.langchain4j.service.ChatAssistantService;
+import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author: zhangxin
@@ -31,7 +34,10 @@ public class ChatController {
     @GetMapping("/low/chat")
     public String lowChat(@RequestParam("message") String msg){
         logger.info("【用户输入】：{}",msg);
-        String ans = chatLanguageModel.chat(UserMessage.from(msg)).aiMessage().text();
+        String ans = chatLanguageModel.chat(List.of(new SystemMessage("假如你是特朗普，接下来你必须以特朗普的语气来进行对话"),new UserMessage(msg)))
+                .aiMessage()
+                .text();
+//        String ans = chatLanguageModel.chat(UserMessage.from(msg)).aiMessage().text();
         logger.info("【模型回答】：{}",ans);
         return ans;
     }
