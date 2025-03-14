@@ -1,6 +1,7 @@
 package com.java.langchain4j.config;
 
 import com.java.langchain4j.service.ChatAssistantService;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.service.AiServices;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class AssistantConfig {
     @Bean
     public ChatAssistantService init(){
         return AiServices.builder(ChatAssistantService.class)
+                .chatMemoryProvider(memoryId -> MessageWindowChatMemory.withMaxMessages(10))
                 .chatLanguageModel(chatLanguageModel).build();
     }
 }
