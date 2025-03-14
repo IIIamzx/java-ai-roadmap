@@ -1,9 +1,12 @@
 package com.java.langchain4j.config;
 
 import com.java.langchain4j.service.ChatAssistantService;
+import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.store.embedding.EmbeddingStore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +23,10 @@ public class AssistantConfig {
     final ChatLanguageModel chatLanguageModel;
 
     @Bean
-    public ChatAssistantService init(){
+    public ChatAssistantService init(EmbeddingStore<TextSegment> embeddingStore){
         return AiServices.builder(ChatAssistantService.class)
-                .chatMemoryProvider(memoryId -> MessageWindowChatMemory.withMaxMessages(10))
+                .chatMemoryProvider(memoryId -> MessageWindowChatMemory.withMaxMessages(10))//会话记忆
+                .contentRetriever(EmbeddingStoreContentRetriever.from(embeddingStore))
                 .chatLanguageModel(chatLanguageModel).build();
     }
 }
