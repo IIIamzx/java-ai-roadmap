@@ -23,6 +23,7 @@
     <log4j2.version>2.24.3</log4j2.version>
     <springboot.version>3.3.2</springboot.version>
     <postgresql.version>42.3.8</postgresql.version>
+    <fastjson.version>1.2.83</fastjson.version>
 
     <mybatis-plus.version>3.5.8</mybatis-plus.version>
     <oapi-sdk>2.4.8</oapi-sdk>
@@ -115,6 +116,12 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>${postgresql.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
     </dependency>
 
   </dependencies>

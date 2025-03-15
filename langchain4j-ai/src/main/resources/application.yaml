@@ -28,7 +28,7 @@ langchain4j:
       chat-model:
         base-url: http://120.46.189.218:11434
         #model-name: llama3.1
-        model-name: llava
+        model-name: llama3.2:latest
       embedding-model:
         base-url: http://120.46.189.218:11434
         model-name: all-minilm
