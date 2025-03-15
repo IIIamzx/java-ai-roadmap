@@ -72,13 +72,13 @@ public class FunctionCallingController {
         return "func success";
     }
 
-//    @GetMapping("/high/func")
-//    public String highChatMemory(@RequestParam("message") String msg){
-//        logger.info("【用户输入】：{}",msg);
-//        String ans = chatAssistantService.chat(msg);
-//        logger.info("【模型回答】：{}",ans);
-//        return ans;
-//    }
+    @GetMapping("/high/func")
+    public String highChatMemory(@RequestParam("message") String msg){
+        logger.info("【用户输入】：{}",msg);
+        String ans = chatAssistantService.chat(msg);
+        logger.info("【模型回答】：{}",ans);
+        return ans;
+    }
 
 
 }

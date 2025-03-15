@@ -1,5 +1,6 @@
 package com.java.langchain4j.config;
 
+import com.java.langchain4j.func.CalculatorHighLevel;
 import com.java.langchain4j.service.ChatAssistantService;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
@@ -26,7 +27,8 @@ public class AssistantConfig {
     public ChatAssistantService init(EmbeddingStore<TextSegment> embeddingStore){
         return AiServices.builder(ChatAssistantService.class)
                 .chatMemoryProvider(memoryId -> MessageWindowChatMemory.withMaxMessages(10))//会话记忆
-                .contentRetriever(EmbeddingStoreContentRetriever.from(embeddingStore))
+                .contentRetriever(EmbeddingStoreContentRetriever.from(embeddingStore))//增强检索
+                .tools(new CalculatorHighLevel())
                 .chatLanguageModel(chatLanguageModel).build();
     }
 }
