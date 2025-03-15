@@ -3,8 +3,9 @@ package com.java.langchain4j.controller;
 import com.java.langchain4j.service.ChatAssistantService;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
+import dev.langchain4j.data.document.splitter.DocumentByLineSplitter;
 import dev.langchain4j.data.segment.TextSegment;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +32,8 @@ public class RagController {
 
     public static final Logger logger = LoggerFactory.getLogger(RagController.class);
 
-    final ChatLanguageModel chatLanguageModel;
     final ChatAssistantService chatAssistantService;
+    final EmbeddingModel embeddingModel;
     final EmbeddingStore<TextSegment> embeddingStore;
 
 
@@ -54,7 +55,14 @@ public class RagController {
     @GetMapping("/load")
     public String loadFile(){
         List<Document> documents = FileSystemDocumentLoader.loadDocuments("/Users/zhangxin/code/java-ai-roadmap/langchain4j-ai/src/main/resources/doc");
-        EmbeddingStoreIngestor.ingest(documents,embeddingStore);
+//        EmbeddingStoreIngestor.ingest(documents,embeddingStore);
+
+        EmbeddingStoreIngestor.builder()
+                .embeddingStore(embeddingStore)
+                .embeddingModel(embeddingModel)
+                .documentSplitter(new DocumentByLineSplitter(30,20))
+                .build().ingest(documents);
+
         return "success";
     }
 }
