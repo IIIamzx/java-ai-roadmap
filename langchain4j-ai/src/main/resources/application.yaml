@@ -15,23 +15,23 @@ spring:
 
 langchain4j:
     community:
-      dashscope:
-        chat-model:
-          api-key: sk-4000a9e2f25d469fb524a5174df01693
-          #model_name:  deepseek-v3           qwen-max-latest    qwen-plus    qwq-32b
-          model-name: qwen-max
-        embedding-model:
-          base-url: https://dashscope.aliyuncs.com/api/v1/services/embeddings/multimodal-embedding/multimodal-embedding
-          api-key: sk-4000a9e2f25d469fb524a5174df01693
-          model-name: multimodal-embedding-v1
-#    ollama:
-#      chat-model:
-#        base-url: http://120.46.189.218:11434
-#        #model-name: llama3.1
-#        model-name: llama3.2:latest
-#      embedding-model:
-#        base-url: http://120.46.189.218:11434
-#        model-name: all-minilm
+#      dashscope:
+#        chat-model:
+#          api-key: sk-4000a9e2f25d469fb524a5174df01693
+#          #model_name:  deepseek-v3           qwen-max-latest    qwen-plus    qwq-32b
+#          model-name: qwen-max
+#        embedding-model:
+#          base-url: https://dashscope.aliyuncs.com/api/v1/services/embeddings/multimodal-embedding/multimodal-embedding
+#          api-key: sk-4000a9e2f25d469fb524a5174df01693
+#          model-name: multimodal-embedding-v1
+    ollama:
+      chat-model:
+        base-url: http://120.46.189.218:11434
+        #model-name: llama3.1
+        model-name: llama3.2:latest
+      embedding-model:
+        base-url: http://120.46.189.218:11434
+        model-name: all-minilm
 
 
 
